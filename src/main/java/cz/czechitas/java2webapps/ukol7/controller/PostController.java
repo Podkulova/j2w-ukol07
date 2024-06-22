@@ -4,6 +4,7 @@ package cz.czechitas.java2webapps.ukol7.controller;
 import cz.czechitas.java2webapps.ukol7.Application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import cz.czechitas.java2webapps.ukol7.entity.Post;
 import cz.czechitas.java2webapps.ukol7.service.PostService;
@@ -35,11 +36,18 @@ public class PostController {
         return "index";
     }
 
-    @GetMapping("/post/{slug}")
-    public String getPostBySlug(@PathVariable String slug, Model model) {
-        Post post = postService.singlePost(slug).orElse(null);
-        model.addAttribute("post", post);
-        logger.info("Vytvořil se seznam");
+/*   @GetMapping("/post/{id}")
+    public String getPostBySlug(@PathVariable Long id, Model model) {
+        Optional<Post> posts = postService.findPostById(id);
+        model.addAttribute("posts", posts);
+
         return "post";
+    }*/
+
+    @GetMapping("/post/{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long id, Model model) {
+        Optional<Post> post = postService.findPostById(id);
+        model.addAttribute("po", post); // Add 'post' attribute to the model
+        return post.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

@@ -23,7 +23,11 @@ public class PostService {
         return posts;
     }
 
-    public Optional<Post> singlePost(String slug) {
+    public Optional<Post> findPostBySlug(String slug) {
         return postRepository.findBySlug(slug);
+    }
+
+    public Optional<Post> findPostById(Long id) {
+        return postRepository.findById(id);
     }
 }

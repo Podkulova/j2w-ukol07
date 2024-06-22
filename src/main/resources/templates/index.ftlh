@@ -12,7 +12,9 @@
 <ul>
     [#list posts as post]
         <li>
-            <a href="/post/${post.slug}">${post.title}</a>
+            <a href="/post/${post.slug}">
+                <h2>${post.title}</h2>
+            </a>
             <p>${post.perex?no_esc}</p>
         </li>
     [/#list]

@@ -19,6 +19,7 @@ public class Post {
     private String body; // pokračování zápisku za perexem, HTML kód
     private Date published;
 
+
     public Long getId() {
         return id;
     }
