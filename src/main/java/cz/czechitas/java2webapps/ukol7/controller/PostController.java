@@ -32,26 +32,13 @@ public class PostController {
     public String getAllPosts(Model model) {
         List<Post> posts = postService.list();
         model.addAttribute("posts", posts);
-        logger.info("Vytvořila se stránka");
         return "index";
     }
 
-/*   @GetMapping("/post/{id}")
-    public String getPostBySlug(@PathVariable Long id, Model model) {
-        Optional<Post> posts = postService.findPostById(id);
-        model.addAttribute("posts", posts);
-
-        return "post";
-    }*/
 
     @GetMapping("/post/{slug}")
     public String postDetail(@PathVariable String slug, Model model) {
-        Optional<Post> postOptional = postService.findPostBySlug(slug);
-        if (postOptional.isPresent()) {
-            model.addAttribute("post", postOptional.get());
-            return "post";
-        } else {
-            return "post-not-found";
-        }
+        model.addAttribute("post", postService.getPostBySlug(slug));
+        return "post";
     }
 }

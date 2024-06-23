@@ -11,7 +11,7 @@
 <body>
 <h1>Můj blog</h1>
 
-[#list posts as post]
+
 <table>
     <thead>
     <tr>
@@ -23,19 +23,19 @@
     </tr>
     </thead>
     <tbody>
-
+    [#list posts as post]
     <tr>
-        <td>${post.title}</a></td>
+        <td>${post.title}</td>
         <td>${post.author}</td>
         <td>${post.perex}</td>
         <td>${post.body}</td>
         <td>${post.published}</td>
         <td><a href="/post/${post.slug}">Přečíst</a></td>
     </tr>
-
+    [/#list]
     </tbody>
 </table>
-[/#list]
+
 </body>
 </html>
 
