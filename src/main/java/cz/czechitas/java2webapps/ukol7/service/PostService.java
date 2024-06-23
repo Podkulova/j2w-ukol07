@@ -27,7 +27,5 @@ public class PostService {
         return postRepository.findBySlug(slug);
     }
 
-    public Optional<Post> findPostById(Long id) {
-        return postRepository.findById(id);
-    }
+
 }

@@ -44,10 +44,14 @@ public class PostController {
         return "post";
     }*/
 
-    @GetMapping("/post/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id, Model model) {
-        Optional<Post> post = postService.findPostById(id);
-        model.addAttribute("po", post); // Add 'post' attribute to the model
-        return post.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping("/post/{slug}")
+    public String postDetail(@PathVariable String slug, Model model) {
+        Optional<Post> postOptional = postService.findPostBySlug(slug);
+        if (postOptional.isPresent()) {
+            model.addAttribute("post", postOptional.get());
+            return "post";
+        } else {
+            return "post-not-found";
+        }
     }
 }
