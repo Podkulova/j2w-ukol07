@@ -10,16 +10,14 @@
 </head>
 <body>
 <h1>Můj blog</h1>
-
-
 <table>
     <thead>
     <tr>
-        <th>Title</th>
-        <th>Author</th>
+        <th>Titulek</th>
+        <th>Autor</th>
         <th>Perex</th>
-        <th>Body</th>
-        <th>Published</th>
+        <th>Tělo</th>
+        <th>Publikováno</th>
     </tr>
     </thead>
     <tbody>
@@ -30,7 +28,7 @@
         <td>${post.perex}</td>
         <td>${post.body}</td>
         <td>${post.published}</td>
-        <td><a href="/post/${post.slug}">Přečíst</a></td>
+        <td><a href="/post/${post.id}">Přečíst</a></td>
     </tr>
     [/#list]
     </tbody>
